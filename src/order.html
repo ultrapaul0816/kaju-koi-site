@@ -1,0 +1,79 @@
+---
+title: Pre-order · Kaju Koi
+desc: Send a Kaju Koi pre-order request. Nothing is charged now; our team will confirm availability, delivery and payment.
+cur: order
+---
+<section class="hero" style="padding-bottom:1rem">
+  <div class="wrap" style="display:block">
+    <p class="eyebrow">Pre-order request</p>
+    <h1>Send a pre-order request</h1>
+    <p class="lede">Pick your boxes, tell us where they should go, and we will confirm with you personally.</p>
+    <p class="notice warm" style="max-width:52em;margin-top:1.2rem"><strong>This is a request, not a payment.</strong> Our web store opens once our FSSAI licence and shelf-life tests are confirmed. Nothing is charged now. Our team will confirm availability, delivery and payment with you before anything is baked or shipped.</p>
+  </div>
+</section>
+
+<section style="padding-top:1.5rem">
+  <div class="wrap">
+    <div id="order-done" class="success" hidden tabindex="-1">
+      <img src="brand/seal-112.png" width="56" height="56" alt="">
+      <h2>Thank you. Your request is in.</h2>
+      <p>Reference <strong id="done-ref"></strong> · Total <strong id="done-total"></strong></p>
+      <p>This is a pre-order request, not a payment. Our team will contact you to confirm availability, delivery and payment.</p>
+      <p><a href="shop.html">Back to the shop</a></p>
+    </div>
+
+    <form id="order-form" class="order-layout" novalidate>
+      <div>
+        <fieldset>
+          <legend>1. Choose your boxes</legend>
+          <ul class="pick" id="pick"></ul>
+          <p class="hint">Prices are MRP, inclusive of all taxes, the same across India.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Delivery</legend>
+          <div class="fields two">
+            <div class="full"><label for="o-address">Delivery address</label><textarea id="o-address" name="address" autocomplete="street-address" required rows="3"></textarea></div>
+            <div><label for="o-city">City</label><input id="o-city" name="city" type="text" autocomplete="address-level2" required></div>
+            <div><label for="o-pincode">Pincode</label><input id="o-pincode" name="pincode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" required></div>
+            <div><label for="o-date">Preferred delivery date <span class="opt">(optional)</span></label><input id="o-date" name="preferred_date" type="date"><p class="hint">We will confirm the actual date with you.</p></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Your details</legend>
+          <div class="fields two">
+            <div class="full"><label for="o-name">Full name</label><input id="o-name" name="name" type="text" autocomplete="name" required></div>
+            <div><label for="o-phone">Phone</label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+91"></div>
+            <div><label for="o-email">Email</label><input id="o-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Gift message <span class="opt" style="font:400 1rem var(--sans)">(optional)</span></legend>
+          <div class="checks" style="margin-bottom:.8rem"><label><input type="checkbox" id="o-giftcard" name="gift_card"> Add a gift message card</label></div>
+          <div id="gift-wrap" hidden>
+            <label for="o-gift">Message for the card</label>
+            <textarea id="o-gift" name="gift_message" maxlength="300" rows="3" placeholder="With love from Goa…"></textarea>
+            <p class="hint"><span id="gift-count">0</span>/300 characters</p>
+          </div>
+          <div style="margin-top:1rem"><label for="o-notes">Anything else? <span class="opt">(optional)</span></label><textarea id="o-notes" name="notes" maxlength="1000" rows="2"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="o-website">Leave empty</label><input id="o-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        </fieldset>
+      </div>
+
+      <aside class="summary" aria-labelledby="sum-h">
+        <h2 id="sum-h">Your request</h2>
+        <table><tbody id="sum-lines"><tr><td class="empty" colspan="2">No boxes chosen yet.</td></tr></tbody></table>
+        <div class="total"><span>Total (MRP incl. taxes)</span><span id="sum-total" aria-live="polite">₹0</span></div>
+        <p class="small">Delivery charges, if any, are confirmed with you. <span class="ph">[Delivery policy]</span></p>
+        <button class="btn" type="submit" id="o-submit">Send pre-order request</button>
+        <button class="btn" type="button" disabled aria-disabled="true" title="Online payment is not live yet">Pay with Razorpay · coming soon</button>
+        <a class="btn wa" id="wa-btn" href="#" data-wa-placeholder="true">Order on WhatsApp <span class="ph">[WhatsApp number]</span></a>
+        <p class="small">WhatsApp ordering is a placeholder until our number is added. Online payment is not live yet.</p>
+        <div id="o-status" class="form-status" role="status" aria-live="polite"></div>
+      </aside>
+    </form>
+    <div class="mbar" id="mbar" aria-hidden="true"><span>Total <b id="mbar-total">₹0</b></span><a href="#sum-h" tabindex="-1">Review &amp; send</a></div>
+  </div>
+</section>

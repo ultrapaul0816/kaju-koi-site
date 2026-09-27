@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<meta name="theme-color" content="#FBFAF6">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{desc}}">
+<meta property="og:image" content="img/og.jpg">
+<link rel="icon" href="brand/seal-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="brand/seal-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap&text=%E3%82%AB%E3%82%B8%E3%83%A5%E6%81%8B%E3%81%8A%E5%9C%9F%E7%94%A3%E4%B8%81%E5%AF%A7%C2%B7">
+<link rel="stylesheet" href="css/site.css?v={{v}}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-bar"><strong>Preview site.</strong> <span class="pb-long">Our web store opens once our FSSAI licence and shelf-life tests are confirmed. Until then, orders are pre-order requests: nothing is charged.</span><span class="pb-short">Orders are pre-order requests for now. Nothing is charged.</span></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Kaju Koi home">
+      <span><span class="wm">Kaju Koi</span><span class="wm-jp" lang="ja">カジュ恋</span></span>
+      <img src="brand/seal-112.png" width="34" height="34" alt="">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav" aria-label="Main">
+      <a href="index.html#story" {{cur_story}}>Our story</a>
+      <a href="shop.html" {{cur_shop}}>Shop</a>
+      <a href="business.html" {{cur_business}}>Parties &amp; business</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="order.html" {{cur_order}}>Pre-order</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
