@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pre-order · Kaju Koi</title>
+<meta name="description" content="Send a Kaju Koi pre-order request. Nothing is charged now; our team will confirm availability, delivery and payment.">
+<meta name="theme-color" content="#FBFAF6">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Pre-order · Kaju Koi">
+<meta property="og:description" content="Send a Kaju Koi pre-order request. Nothing is charged now; our team will confirm availability, delivery and payment.">
+<meta property="og:image" content="img/og.jpg">
+<link rel="icon" href="brand/seal-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="brand/seal-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap&text=%E3%82%AB%E3%82%B8%E3%83%A5%E6%81%8B%E3%81%8A%E5%9C%9F%E7%94%A3%E4%B8%81%E5%AF%A7%C2%B7">
+<link rel="stylesheet" href="css/site.css?v=202609272323">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-bar"><strong>Preview site.</strong> <span class="pb-long">Our web store opens once our FSSAI licence and shelf-life tests are confirmed. Until then, orders are pre-order requests: nothing is charged.</span><span class="pb-short">Orders are pre-order requests for now. Nothing is charged.</span></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Kaju Koi home">
+      <span><span class="wm">Kaju Koi</span><span class="wm-jp" lang="ja">カジュ恋</span></span>
+      <img src="brand/seal-112.png" width="34" height="34" alt="">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav" aria-label="Main">
+      <a href="index.html#story" >Our story</a>
+      <a href="shop.html" >Shop</a>
+      <a href="business.html" >Parties &amp; business</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="order.html" aria-current="page">Pre-order</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero" style="padding-bottom:1rem">
+  <div class="wrap" style="display:block">
+    <p class="eyebrow">Pre-order request</p>
+    <h1>Send a pre-order request</h1>
+    <p class="lede">Pick your boxes, tell us where they should go, and we will confirm with you personally.</p>
+    <p class="notice warm" style="max-width:52em;margin-top:1.2rem"><strong>This is a request, not a payment.</strong> Our web store opens once our FSSAI licence and shelf-life tests are confirmed. Nothing is charged now. Our team will confirm availability, delivery and payment with you before anything is baked or shipped.</p>
+  </div>
+</section>
+
+<section style="padding-top:1.5rem">
+  <div class="wrap">
+    <div id="order-done" class="success" hidden tabindex="-1">
+      <img src="brand/seal-112.png" width="56" height="56" alt="">
+      <h2>Thank you. Your request is in.</h2>
+      <p>Reference <strong id="done-ref"></strong> · Total <strong id="done-total"></strong></p>
+      <p>This is a pre-order request, not a payment. Our team will contact you to confirm availability, delivery and payment.</p>
+      <p><a href="shop.html">Back to the shop</a></p>
+    </div>
+
+    <form id="order-form" class="order-layout" novalidate>
+      <div>
+        <fieldset>
+          <legend>1. Choose your boxes</legend>
+          <ul class="pick" id="pick"></ul>
+          <p class="hint">Prices are MRP, inclusive of all taxes, the same across India.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Delivery</legend>
+          <div class="fields two">
+            <div class="full"><label for="o-address">Delivery address</label><textarea id="o-address" name="address" autocomplete="street-address" required rows="3"></textarea></div>
+            <div><label for="o-city">City</label><input id="o-city" name="city" type="text" autocomplete="address-level2" required></div>
+            <div><label for="o-pincode">Pincode</label><input id="o-pincode" name="pincode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" required></div>
+            <div><label for="o-date">Preferred delivery date <span class="opt">(optional)</span></label><input id="o-date" name="preferred_date" type="date"><p class="hint">We will confirm the actual date with you.</p></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Your details</legend>
+          <div class="fields two">
+            <div class="full"><label for="o-name">Full name</label><input id="o-name" name="name" type="text" autocomplete="name" required></div>
+            <div><label for="o-phone">Phone</label><input id="o-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+91"></div>
+            <div><label for="o-email">Email</label><input id="o-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Gift message <span class="opt" style="font:400 1rem var(--sans)">(optional)</span></legend>
+          <div class="checks" style="margin-bottom:.8rem"><label><input type="checkbox" id="o-giftcard" name="gift_card"> Add a gift message card</label></div>
+          <div id="gift-wrap" hidden>
+            <label for="o-gift">Message for the card</label>
+            <textarea id="o-gift" name="gift_message" maxlength="300" rows="3" placeholder="With love from Goa…"></textarea>
+            <p class="hint"><span id="gift-count">0</span>/300 characters</p>
+          </div>
+          <div style="margin-top:1rem"><label for="o-notes">Anything else? <span class="opt">(optional)</span></label><textarea id="o-notes" name="notes" maxlength="1000" rows="2"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="o-website">Leave empty</label><input id="o-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        </fieldset>
+      </div>
+
+      <aside class="summary" aria-labelledby="sum-h">
+        <h2 id="sum-h">Your request</h2>
+        <table><tbody id="sum-lines"><tr><td class="empty" colspan="2">No boxes chosen yet.</td></tr></tbody></table>
+        <div class="total"><span>Total (MRP incl. taxes)</span><span id="sum-total" aria-live="polite">₹0</span></div>
+        <p class="small">Delivery charges, if any, are confirmed with you. <span class="ph">[Delivery policy]</span></p>
+        <button class="btn" type="submit" id="o-submit">Send pre-order request</button>
+        <button class="btn" type="button" disabled aria-disabled="true" title="Online payment is not live yet">Pay with Razorpay · coming soon</button>
+        <a class="btn wa" id="wa-btn" href="#" data-wa-placeholder="true">Order on WhatsApp <span class="ph">[WhatsApp number]</span></a>
+        <p class="small">WhatsApp ordering is a placeholder until our number is added. Online payment is not live yet.</p>
+        <div id="o-status" class="form-status" role="status" aria-live="polite"></div>
+      </aside>
+    </form>
+    <div class="mbar" id="mbar" aria-hidden="true"><span>Total <b id="mbar-total">₹0</b></span><a href="#sum-h" tabindex="-1">Review &amp; send</a></div>
+  </div>
+</section>
+</main>
+<div class="tile-band thin" aria-hidden="true"></div>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div style="display:flex;align-items:center;gap:.6rem"><span class="wm">Kaju Koi</span><img src="brand/seal-112.png" width="36" height="36" alt=""></div>
+        <p class="jp" lang="ja" style="letter-spacing:.3em;margin:.4rem 0 1rem">カジュ恋</p>
+        <p class="tagline" style="font-size:1.25rem;color:#fff">From Goa, with love from Japan.</p>
+        <p style="font-size:.85rem;color:#b9c2d8">Goan cashew cookies, baked in Goa and wrapped one by one.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li>Phone: <span class="ph">[Phone]</span></li>
+          <li>WhatsApp: <span class="ph">[WhatsApp number]</span></li>
+          <li>Email: <span class="ph">[Email]</span></li>
+          <li>Address: <span class="ph">[Company Name], [Full address, Goa, PIN]</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html#story">Our story</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="order.html">Pre-order</a></li>
+          <li><a href="business.html">Weddings, corporate &amp; hotels</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <ul>
+          <li>Instagram: <span class="ph">[@handle]</span></li>
+          <li>Website: <span class="ph">[kajukoi.TBD]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>FSSAI Lic. No. <span class="ph">[FSSAI Lic. No.]</span></span>
+      <span>GSTIN <span class="ph">[GSTIN]</span></span>
+      <span><a href="#contact">Privacy policy <span class="ph">[to be added]</span></a> · <a href="#contact">Terms &amp; delivery <span class="ph">[to be added]</span></a></span>
+      <span>Kaju Koi is a working brand name. Made in India.</span>
+    </div>
+  </div>
+</footer>
+<script src="js/config.js?v=202609272323"></script>
+<script src="js/site.js?v=202609272323"></script>
+</body>
+</html>
