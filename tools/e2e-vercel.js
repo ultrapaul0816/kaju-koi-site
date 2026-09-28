@@ -1,0 +1,42 @@
+const { chromium } = require('playwright');
+const base = process.argv[2];
+(async () => {
+  const b = await chromium.launch();
+  const p = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+  p.on('console', m => console.log('console:', m.text()));
+  await p.goto(base + 'order.html?box=original-12', { waitUntil: 'networkidle' });
+  // add one Kokum box via + button
+  await p.click('button[aria-label="More Kokum Koi, box of 12 (summer)"]');
+  console.log('UI total:', await p.textContent('#sum-total'));
+  await p.fill('#o-address', 'TEST ORDER - please ignore. 1 Test Lane, Panaji');
+  await p.fill('#o-city', 'Panaji');
+  await p.fill('#o-pincode', '403001');
+  await p.fill('#o-name', 'TEST Order (Vercel end-to-end check)');
+  await p.fill('#o-phone', '+91 90000 00000');
+  await p.fill('#o-email', 'test@example.com');
+  await p.check('#o-giftcard');
+  await p.fill('#o-gift', 'TEST gift message: With love from Goa.');
+  await p.fill('#o-notes', 'TEST submission by the build agent. Not a real order.');
+  await p.click('#o-submit');
+  await p.waitForSelector('#order-done:not([hidden])', { timeout: 30000 });
+  console.log('ORDER ref', await p.textContent('#done-ref'), 'total', await p.textContent('#done-total'));
+  await p.screenshot({ path: '../screens/vercel-order-success-desktop.png' });
+
+  await p.goto(base + 'business.html#quote', { waitUntil: 'networkidle' });
+  await p.selectOption('#e-occasion', 'Corporate Diwali');
+  await p.fill('#e-count', '150');
+  await p.selectOption('#e-budget', '₹400–800');
+  await p.fill('#e-city', 'Mumbai');
+  await p.check('input[value="Logo sleeve"]');
+  await p.check('input[value="Message card"]');
+  await p.fill('#e-name', 'TEST Enquiry (Vercel end-to-end check)');
+  await p.fill('#e-company', 'TEST Company');
+  await p.fill('#e-phone', '+91 90000 00000');
+  await p.fill('#e-email', 'test@example.com');
+  await p.fill('#e-notes', 'TEST submission by the build agent. Not a real enquiry.');
+  await p.click('#e-submit');
+  await p.waitForSelector('#enq-done:not([hidden])', { timeout: 30000 });
+  console.log('ENQUIRY ref', await p.textContent('#enq-ref'));
+  await p.locator('#quote').screenshot({ path: '../screens/vercel-enquiry-success-desktop.png' });
+  await b.close();
+})();

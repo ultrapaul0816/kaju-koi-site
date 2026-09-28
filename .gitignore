@@ -2,3 +2,5 @@
 tools/node_modules/
 screens/*-fold.png
 screens/
+site/.vercel
+.vercel
