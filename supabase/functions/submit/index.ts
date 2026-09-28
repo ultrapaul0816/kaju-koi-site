@@ -152,19 +152,23 @@ ${table([
   }
 
   // Owner notification only (no customer auto-replies).
+  // DISABLED until NOTIFY_TO, NOTIFY_FROM and RESEND_API_KEY are configured (Supabase function secrets
+  // or rows in private.config). All are intentionally empty, so this step is a no-op.
   let notified = false, emailError = "";
   try {
     const { data: cfgRows } = await supabase.rpc("kk_get_config");
-    const cfg = Object.fromEntries((cfgRows ?? []).map((r: any) => [r.key, r.value]));
-    const senders = [cfg.notify_from, cfg.notify_from_fallback].filter(Boolean);
-    for (const from of senders) {
+    const cfg: Record<string, string> = Object.fromEntries((cfgRows ?? []).map((r: any) => [r.key, r.value]));
+    const to = (Deno.env.get("NOTIFY_TO") || cfg.notify_to || "").trim();
+    const from = (Deno.env.get("NOTIFY_FROM") || cfg.notify_from || "").trim();
+    const key = (Deno.env.get("RESEND_API_KEY") || cfg.resend_api_key || "").trim();
+    if (to && from && key) {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
-        headers: { Authorization: `Bearer ${cfg.resend_api_key}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ from, to: [cfg.notify_to], subject, html, reply_to: row.email }),
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ from, to: [to], subject, html, reply_to: row.email }),
       });
-      if (res.ok) { notified = true; emailError = ""; break; }
-      emailError = `${from}: ${res.status} ${(await res.text()).slice(0, 300)}`;
+      if (res.ok) notified = true;
+      else emailError = `${res.status} ${(await res.text()).slice(0, 300)}`;
     }
   } catch (e) {
     emailError = String(e).slice(0, 300);

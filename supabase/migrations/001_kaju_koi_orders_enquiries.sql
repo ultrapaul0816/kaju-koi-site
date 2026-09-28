@@ -28,4 +28,5 @@ create or replace function public.kk_get_config() returns table(key text, value 
 language sql security definer set search_path = '' as $$ select c.key, c.value from private.config c $$;
 revoke all on function public.kk_get_config() from public, anon, authenticated;
 grant execute on function public.kk_get_config() to service_role;
--- private.config keys: resend_api_key, notify_to, notify_from, notify_from_fallback (values set out of band)
+-- Email notifications are disabled. Optional private.config keys (currently none set):
+-- notify_to, notify_from, resend_api_key. The function only emails when all three are present.
